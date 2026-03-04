@@ -23,6 +23,10 @@ const AdvantagePage = () => {
 
       </div>
 
+      <h1 className="text-2xl font-bold mt-10 text-white">
+        GREATER HAPPENS HERE • TROJAN PRIDE • IEEE EXCELLENCE
+      </h1>
+
     </div>
   );
 };
