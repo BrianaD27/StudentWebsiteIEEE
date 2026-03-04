@@ -2,7 +2,7 @@ import React from "react";
 
 const BranchMissionPage = () => {
   return (
-    <div className="h-[80vh] flex flex-col items-center justify-start px-[15%] py-10">
+    <div className="h-auto flex flex-col items-center justify-start px-[15%] py-20 ">
       <p className="bg-IEEE-Blue text-white px-4 py-2 rounded-full font-bold my-4">
         THE TROJAN STANDARD
       </p>
