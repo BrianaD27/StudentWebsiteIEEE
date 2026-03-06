@@ -1,6 +1,374 @@
-import React from "react";
+import { useState } from "react";
 
-/* SVG Icon helpers */
+/* ─── Color tokens ─────────────────────────────── */
+const C = {
+  navy:    "#002855",
+  navyDark:"#001e3c",
+  blue:    "#1a4a8a",
+  orange:  "#FF6B00",
+  white:   "#ffffff",
+  gray:    "#c0d8ef",
+  muted:   "#a0bfdf",
+};
+
+/* ─── Shared style primitives ───────────────────── */
+const styles = `
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+  .ct-page {
+    font-family: 'Inter', sans-serif;
+    color: ${C.white};
+    background: #f4f6f8;
+  }
+
+  /* timestamp bar */
+  .ct-timestamp {
+    background: ${C.navyDark};
+    text-align: right;
+    padding: 4px 5%;
+    font-size: 10px;
+    color: ${C.muted};
+    letter-spacing: 0.5px;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .ct-timestamp span { color: ${C.orange}; }
+
+  /* ── HERO ── */
+  .ct-hero {
+    background: ${C.navy};
+    padding: 60px 10% 56px;
+    text-align: center;
+    border-bottom: 3px solid ${C.orange};
+  }
+  .ct-badge {
+    display: inline-block;
+    background: ${C.blue};
+    color: white;
+    font-weight: 700;
+    font-size: 10px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    padding: 5px 18px;
+    border-radius: 999px;
+    border: 1px solid rgba(255,255,255,0.15);
+    margin-bottom: 18px;
+  }
+  .ct-hero h1 {
+    font-weight: 900;
+    font-size: 4.2rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    line-height: 1;
+    color: white;
+    margin-bottom: 16px;
+  }
+  .ct-hero h1 span { color: ${C.orange}; }
+  .ct-hero p {
+    font-size: 1rem;
+    color: ${C.gray};
+    max-width: 540px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+
+  /* ── UPCOMING CAMPAIGNS ── */
+  .ct-upcoming {
+    background: #f7f9fb;
+    padding: 60px 10%;
+    color: ${C.navy};
+  }
+  .ct-section-header {
+    text-align: center;
+    margin-bottom: 36px;
+  }
+  .ct-section-header .ct-badge-alt {
+    display: inline-block;
+    background: ${C.orange};
+    color: white;
+    font-weight: 700;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 5px 16px;
+    border-radius: 999px;
+    margin-bottom: 12px;
+  }
+  .ct-section-header h2 {
+    font-weight: 900;
+    font-size: 2.6rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: ${C.navy};
+  }
+  .ct-section-header h2 span { color: ${C.orange}; }
+
+  .ct-campaign-card {
+    display: flex;
+    background: white;
+    border: 2px solid #e0e8f0;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 22px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    position: relative;
+  }
+  .ct-campaign-card:hover {
+    border-color: ${C.orange};
+    box-shadow: 0 6px 24px rgba(0,40,85,0.1);
+  }
+  .ct-reg-badge {
+    position: absolute;
+    top: 12px;
+    left: 0;
+    background: #22c55e;
+    color: white;
+    font-weight: 700;
+    font-size: 9px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 0 4px 4px 0;
+  }
+  .ct-campaign-img {
+    width: 220px;
+    min-height: 180px;
+    object-fit: cover;
+    flex-shrink: 0;
+    background: #cdd8e3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #8a9ab0;
+    font-size: 12px;
+  }
+  .ct-campaign-body {
+    padding: 22px 26px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  .ct-tag {
+    display: inline-block;
+    border: 1.5px solid #ccc;
+    color: #667;
+    font-weight: 700;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 2px 10px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+  }
+  .ct-campaign-title {
+    font-weight: 900;
+    font-size: 1.55rem;
+    text-transform: uppercase;
+    color: ${C.navy};
+    margin-bottom: 10px;
+    letter-spacing: 0.5px;
+  }
+  .ct-campaign-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-bottom: 12px;
+  }
+  .ct-meta-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.8rem;
+    color: #556;
+  }
+  .ct-meta-item svg { color: ${C.orange}; flex-shrink: 0; }
+  .ct-campaign-desc {
+    font-size: 0.82rem;
+    color: #445;
+    line-height: 1.6;
+    flex: 1;
+    margin-bottom: 16px;
+  }
+  .ct-btn-orange {
+    display: inline-block;
+    background: ${C.orange};
+    color: white;
+    font-weight: 800;
+    font-size: 0.85rem;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 10px 22px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    align-self: flex-start;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .ct-btn-orange:hover { background: #e55f00; transform: translateY(-1px); }
+
+  /* ── CURRENT ACTIVITIES ── */
+  .ct-current {
+    background: ${C.navy};
+    padding: 64px 10%;
+  }
+  .ct-current .ct-section-header h2 { color: white; }
+
+  .ct-activity-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  @media (max-width: 768px) {
+    .ct-activity-grid { grid-template-columns: 1fr; }
+    .ct-campaign-img { width: 100%; min-height: 160px; }
+    .ct-campaign-card { flex-direction: column; }
+  }
+  .ct-activity-card {
+    background: ${C.navyDark};
+    border: 2px solid #1e4d8c;
+    border-radius: 10px;
+    padding: 22px;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .ct-activity-card:hover {
+    border-color: ${C.orange};
+    transform: translateY(-3px);
+  }
+  .ct-activity-title {
+    font-weight: 800;
+    font-size: 1.05rem;
+    text-transform: uppercase;
+    color: white;
+    margin-bottom: 12px;
+    line-height: 1.2;
+    letter-spacing: 0.3px;
+  }
+  .ct-activity-meta {
+    display: flex;
+    align-items: flex-start;
+    gap: 6px;
+    font-size: 0.78rem;
+    color: ${C.muted};
+    margin-bottom: 5px;
+  }
+  .ct-activity-meta svg { flex-shrink: 0; margin-top: 1px; color: ${C.orange}; }
+  .ct-activity-desc {
+    font-size: 0.78rem;
+    color: ${C.gray};
+    line-height: 1.55;
+    margin-top: 12px;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    padding-top: 10px;
+  }
+
+  /* ── PAST VICTORIES ── */
+  .ct-past {
+    background: #f7f9fb;
+    padding: 64px 10%;
+    color: ${C.navy};
+  }
+  .ct-past .ct-section-header h2 { color: ${C.navy}; }
+  .ct-victories-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    max-width: 860px;
+    margin: 0 auto;
+  }
+  @media (max-width: 600px) { .ct-victories-grid { grid-template-columns: 1fr; } }
+  .ct-victory-card {
+    background: white;
+    border: 2px solid #e0e8f0;
+    border-radius: 10px;
+    padding: 22px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .ct-victory-card:hover {
+    border-color: ${C.orange};
+    box-shadow: 0 4px 16px rgba(0,40,85,0.08);
+  }
+  .ct-victory-date {
+    font-weight: 700;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: ${C.orange};
+    margin-bottom: 8px;
+  }
+  .ct-victory-title {
+    font-weight: 900;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    color: ${C.navy};
+    margin-bottom: 8px;
+    line-height: 1.2;
+  }
+  .ct-victory-desc {
+    font-size: 0.8rem;
+    color: #445;
+    line-height: 1.6;
+    margin-bottom: 14px;
+  }
+  .ct-outcome-pill {
+    display: inline-block;
+    background: ${C.navy};
+    color: white;
+    font-weight: 700;
+    font-size: 9px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 4px 12px;
+    border-radius: 4px;
+  }
+
+  /* ── CTA ── */
+  .ct-cta {
+    background: white;
+    padding: 64px 10%;
+    text-align: center;
+    color: ${C.navy};
+    border-top: 1px solid #e0e8f0;
+  }
+  .ct-cta h2 {
+    font-weight: 900;
+    font-size: 2.4rem;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+    letter-spacing: 1px;
+  }
+  .ct-cta h2 span { color: ${C.orange}; }
+  .ct-cta p {
+    font-size: 0.92rem;
+    color: #556;
+    max-width: 480px;
+    margin: 0 auto 28px;
+    line-height: 1.65;
+  }
+  .ct-cta-btns {
+    display: flex;
+    gap: 14px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .ct-btn-navy {
+    display: inline-block;
+    background: transparent;
+    color: ${C.navy};
+    font-weight: 800;
+    font-size: 0.85rem;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 11px 22px;
+    border-radius: 6px;
+    border: 2px solid ${C.navy};
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+  }
+  .ct-btn-navy:hover { background: ${C.navy}; color: white; }
+`;
+
+/* ─── SVG Icon helpers ──────────────────────────── */
 const ClockIcon = () => (
   <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
     <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
@@ -18,7 +386,7 @@ const UsersIcon = () => (
   </svg>
 );
 
-/* Data */
+/* ─── Data ─────────────────────────────────────── */
 const campaigns = [
   {
     tag: "Workshop",
@@ -28,7 +396,7 @@ const campaigns = [
     location: "Engineering Building",
     registered: "25 Registered",
     desc: "Comprehensive workshop on printed circuit board design using Altium Designer. Learn schematic capture, PCB layout, design rules, and manufacturing preparation. Design and order your own custom PCB!",
-    imgBg: "bg-[#c0a080]",
+    imgBg: "#c0a080",
   },
   {
     tag: "Networking",
@@ -38,7 +406,7 @@ const campaigns = [
     location: "Student Center Ballroom",
     registered: "40 Registered",
     desc: "Career fair featuring local technology companies and startups. Resume workshops, mock interviews, keynote presentations, and networking opportunities.",
-    imgBg: "bg-[#445566]",
+    imgBg: "#445566",
   },
 ];
 
@@ -81,159 +449,95 @@ const victories = [
 /* ─── Component ─────────────────────────────────── */
 export default function CampaignTrail() {
   return (
-    <div className="flex flex-col">
+    <>
+      <style>{styles}</style>
+      <div className="ct-page">
 
-      {/* ── HERO ── */}
-      <div className="relative">
-        <div className="h-[45vh] w-full bg-IEEE-Blue border-b-4 border-IEEE-Orange" />
-        <div className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center">
-          <h2 className="text-sm font-bold text-white px-4 py-2 bg-IEEE-Blue border border-white/20 rounded-full shadow-xl mb-4 uppercase tracking-widest">
-            The Campaign Trail
-          </h2>
-          <h1 className="lg:text-7xl md:text-6xl text-4xl font-extrabold text-white leading-tight uppercase">
-            Trojan <span className="text-IEEE-Orange">Activities</span>
-          </h1>
-          <p className="text-Blue-Grey mt-4 lg:text-lg md:text-base text-sm font-semibold max-w-xl">
-            Join us for workshops, battles, networking events, and community service throughout the academic year.
-          </p>
-        </div>
-        <div className="absolute sm:top-4 top-4 right-4 text-sm font-medium text-white bg-IEEE-Orange px-4 py-1 rounded-lg shadow-lg">
-          <p>Last Updated: February 22, 2026 at 11:30 AM</p>
-        </div>
-      </div>
-
-      {/* ── UPCOMING CAMPAIGNS ── */}
-      <div className="bg-gray-50 px-6 md:px-[10%] py-16">
-        <div className="text-center mb-10">
-          <h2 className="text-sm font-bold text-white px-4 py-2 bg-IEEE-Orange rounded-full shadow-xl inline-block mb-4 uppercase tracking-widest">
-            Next Battle
-          </h2>
-          <h3 className="lg:text-5xl md:text-4xl text-3xl font-extrabold text-IEEE-Blue uppercase">
-            Upcoming <span className="text-IEEE-Orange">Campaigns</span>
-          </h3>
+        {/* timestamp */}
+        <div className="ct-timestamp">
+          Last Updated: <span>February 22, 2026 at 11:30 AM</span>
         </div>
 
-        <div className="flex flex-col gap-6 max-w-4xl mx-auto">
+        {/* ── HERO ── */}
+        <section className="ct-hero">
+          <div className="ct-badge">The Campaign Trail</div>
+          <h1>Trojan <span>Activities</span></h1>
+          <p>Join us for workshops, battles, networking events, and community service throughout the academic year.</p>
+        </section>
+
+        {/* ── UPCOMING CAMPAIGNS ── */}
+        <section className="ct-upcoming">
+          <div className="ct-section-header">
+            <div className="ct-badge-alt">Next Battle</div>
+            <h2>Upcoming <span>Campaigns</span></h2>
+          </div>
+
           {campaigns.map((c, i) => (
-            <div
-              key={i}
-              className="relative flex flex-col md:flex-row bg-white border-2 border-gray-200 rounded-xl overflow-hidden transition-all duration-300 hover:border-IEEE-Orange hover:shadow-lg"
-            >
-              <span className="absolute top-3 left-0 bg-green-500 text-white text-[9px] font-bold uppercase tracking-widest px-3 py-1 rounded-r-md z-10">
-                Registration Open
-              </span>
-              <div className={`${c.imgBg} w-full md:w-52 min-h-[160px] flex-shrink-0`} />
-              <div className="flex flex-col flex-1 p-6">
-                <span className="text-[10px] font-bold uppercase tracking-widest border-2 border-gray-300 text-gray-500 rounded px-3 py-0.5 self-start mb-3">
-                  {c.tag}
-                </span>
-                <h4 className="text-2xl font-extrabold uppercase text-IEEE-Blue mb-3 tracking-wide">
-                  {c.title}
-                </h4>
-                <div className="flex flex-wrap gap-4 mb-3">
-                  <span className="flex items-center gap-1.5 text-xs text-gray-500">
-                    <span className="text-IEEE-Orange"><ClockIcon /></span>{c.date}
-                  </span>
-                  <span className="flex items-center gap-1.5 text-xs text-gray-500">
-                    <span className="text-IEEE-Orange"><ClockIcon /></span>{c.time}
-                  </span>
-                  <span className="flex items-center gap-1.5 text-xs text-gray-500">
-                    <span className="text-IEEE-Orange"><PinIcon /></span>{c.location}
-                  </span>
-                  <span className="flex items-center gap-1.5 text-xs text-gray-500">
-                    <span className="text-IEEE-Orange"><UsersIcon /></span>{c.registered}
-                  </span>
+            <div className="ct-campaign-card" key={i}>
+              <div className="ct-reg-badge">Registration Open</div>
+              <div className="ct-campaign-img" style={{ background: c.imgBg }} />
+              <div className="ct-campaign-body">
+                <span className="ct-tag">{c.tag}</span>
+                <div className="ct-campaign-title">{c.title}</div>
+                <div className="ct-campaign-meta">
+                  <div className="ct-meta-item"><ClockIcon /> {c.date}</div>
+                  <div className="ct-meta-item"><PinIcon /> {c.location}</div>
+                  <div className="ct-meta-item"><UsersIcon /> {c.registered}</div>
                 </div>
-                <p className="text-sm text-gray-500 leading-relaxed flex-1 mb-4">{c.desc}</p>
-                <button className="self-start px-6 py-2.5 bg-IEEE-Orange text-white text-xs font-bold uppercase tracking-widest rounded-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:bg-[#e55f00]">
-                  Register Now
-                </button>
+                <div className="ct-campaign-desc">{c.desc}</div>
+                <button className="ct-btn-orange">Register Now</button>
               </div>
             </div>
           ))}
-        </div>
-      </div>
+        </section>
 
-      {/* ── CURRENT ACTIVITIES ── */}
-      <div className="bg-IEEE-Blue px-6 md:px-[10%] py-16">
-        <div className="text-center mb-10">
-          <h2 className="text-sm font-bold text-white px-4 py-2 bg-IEEE-Blue border border-white/20 rounded-full shadow-xl inline-block mb-4 uppercase tracking-widest">
-            Ongoing Operations
-          </h2>
-          <h3 className="lg:text-5xl md:text-4xl text-3xl font-extrabold text-white uppercase">
-            Current <span className="text-IEEE-Orange">Activities</span>
-          </h3>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 max-w-4xl mx-auto">
-          {activities.map((a, i) => (
-            <div
-              key={i}
-              className="bg-[#001e3c] border-2 border-[#1e4d8c] rounded-xl p-6 transition-all duration-300 hover:border-IEEE-Orange hover:-translate-y-1"
-            >
-              <h4 className="text-base font-extrabold uppercase text-white mb-3 leading-tight tracking-wide">
-                {a.title}
-              </h4>
-              <div className="flex items-start gap-2 text-xs text-[#a0bfdf] mb-1.5">
-                <span className="text-IEEE-Orange mt-0.5"><ClockIcon /></span>{a.schedule}
+        {/* ── CURRENT ACTIVITIES ── */}
+        <section className="ct-current">
+          <div className="ct-section-header">
+            <div className="ct-badge">Ongoing Operations</div>
+            <h2>Current <span style={{ color: C.orange }}>Activities</span></h2>
+          </div>
+          <div className="ct-activity-grid">
+            {activities.map((a, i) => (
+              <div className="ct-activity-card" key={i}>
+                <div className="ct-activity-title">{a.title}</div>
+                <div className="ct-activity-meta"><ClockIcon />{a.schedule}</div>
+                <div className="ct-activity-meta"><PinIcon />{a.location}</div>
+                <div className="ct-activity-desc">{a.desc}</div>
               </div>
-              <div className="flex items-start gap-2 text-xs text-[#a0bfdf] mb-1.5">
-                <span className="text-IEEE-Orange mt-0.5"><PinIcon /></span>{a.location}
+            ))}
+          </div>
+        </section>
+
+        {/* ── PAST VICTORIES ── */}
+        <section className="ct-past">
+          <div className="ct-section-header">
+            <div className="ct-badge-alt">The Archives</div>
+            <h2>Past <span>Victories</span></h2>
+          </div>
+          <div className="ct-victories-grid">
+            {victories.map((v, i) => (
+              <div className="ct-victory-card" key={i}>
+                <div className="ct-victory-date">{v.date}</div>
+                <div className="ct-victory-title">{v.title}</div>
+                <div className="ct-victory-desc">{v.desc}</div>
+                <div className="ct-outcome-pill">{v.outcome}</div>
               </div>
-              <p className="text-xs text-[#c0d8ef] leading-relaxed mt-3 pt-3 border-t border-white/10">
-                {a.desc}
-              </p>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        </section>
+
+        {/* ── CTA ── */}
+        <section className="ct-cta">
+          <h2>Never Miss a <span>Battle</span></h2>
+          <p>Stay connected with the Trojan legion. Subscribe to our calendar and newsletter.</p>
+          <div className="ct-cta-btns">
+            <button className="ct-btn-orange">Add to Calendar</button>
+            <button className="ct-btn-navy">Subscribe to Updates</button>
+          </div>
+        </section>
+
       </div>
-
-      {/* ── PAST VICTORIES ── */}
-      <div className="bg-gray-50 px-6 md:px-[10%] py-16">
-        <div className="text-center mb-10">
-          <h2 className="text-sm font-bold text-white px-4 py-2 bg-IEEE-Orange rounded-full shadow-xl inline-block mb-4 uppercase tracking-widest">
-            The Archives
-          </h2>
-          <h3 className="lg:text-5xl md:text-4xl text-3xl font-extrabold text-IEEE-Blue uppercase">
-            Past <span className="text-IEEE-Orange">Victories</span>
-          </h3>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 max-w-3xl mx-auto">
-          {victories.map((v, i) => (
-            <div
-              key={i}
-              className="bg-white border-2 border-gray-200 rounded-xl p-6 transition-all duration-300 hover:border-IEEE-Orange hover:shadow-md"
-            >
-              <p className="text-[10px] font-bold uppercase tracking-widest text-IEEE-Orange mb-2">{v.date}</p>
-              <h4 className="text-lg font-extrabold uppercase text-IEEE-Blue mb-2 leading-tight">{v.title}</h4>
-              <p className="text-sm text-gray-500 leading-relaxed mb-4">{v.desc}</p>
-              <span className="inline-block bg-IEEE-Blue text-white text-[9px] font-bold uppercase tracking-widest px-3 py-1 rounded">
-                {v.outcome}
-              </span>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* ── CTA ── */}
-      <div className="bg-white px-6 md:px-[10%] py-16 text-center border-t-2 border-gray-100">
-        <h3 className="lg:text-5xl md:text-4xl text-3xl font-extrabold text-IEEE-Blue uppercase mb-4">
-          Never Miss a <span className="text-IEEE-Orange">Battle</span>
-        </h3>
-        <p className="text-sm text-gray-500 max-w-md mx-auto leading-relaxed mb-8">
-          Stay connected with the Trojan legion. Subscribe to our calendar and newsletter.
-        </p>
-        <div className="flex items-center justify-center gap-4 flex-wrap">
-          <button className="px-8 py-4 bg-IEEE-Orange text-white font-bold uppercase tracking-wider rounded-xl shadow-lg text-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:bg-[#e55f00]">
-            Add to Calendar
-          </button>
-          <button className="px-8 py-4 bg-transparent text-IEEE-Blue font-bold uppercase tracking-wider rounded-xl border-2 border-IEEE-Blue text-sm transition-all duration-300 hover:bg-IEEE-Blue hover:text-white">
-            Subscribe to Updates
-          </button>
-        </div>
-      </div>
-
-    </div>
+    </>
   );
 }
