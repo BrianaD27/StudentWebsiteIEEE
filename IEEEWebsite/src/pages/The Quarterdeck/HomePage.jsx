@@ -1,17 +1,23 @@
 import React from "react";
+import NavBar from "../../components/NavBar";
+import homepage from "../../assets/homepage.png"
+
 
 const HomePage = () => {
   return (
-    /* CHANGE: Removed h-[80vh] and NavBar tag to fix the double nav bar and overlapping layout */
-    <div className="flex flex-col">
+    <div className="h-[80vh]flex flex-col">
+      <div className="relative z-50">
+        <NavBar />
+      </div>
+
       <div className="relative">
         <img
           className="h-[70vh] w-full object-cover relative"
-          src="../../src/assets/homepage.png"
+          src={homepage}
           alt=""
         />
 
-        <div className="absolute inset-0 flex flex-row">
+        <div className="absolute inset-0 flex flex-row items-center">
           <div className="flex flex-col items-start justify-start mx-6 md:mx-8">
             <h1 className="text-md font-bold text-center mt-8 text-white px-4 py-2 bg-IEEE-Orange rounded-full shadow-xl">
               THE QUARTERDECK
@@ -48,7 +54,7 @@ const HomePage = () => {
             </div>
           </div>
 
-          <div className="absolute sm:top-4 top-133 right-4 text-md font-medium text-white bg-IEEE-Orange px-4 py-1 rounded-lg shadow-lg">
+          <div className="absolute top-4 right-4 text-md font-medium text-white bg-IEEE-Orange px-4 py-1 rounded-lg shadow-lg">
             <p>Last Updated: February 25, 2026 at 10:48 AM</p>
           </div>
         </div>

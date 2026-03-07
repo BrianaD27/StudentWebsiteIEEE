@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import NavBar from "../components/NavBar";
 
 const Enlistment = () => {
   const [openFaq, setOpenFaq] = useState(null);
@@ -115,6 +116,9 @@ const Enlistment = () => {
 
   return (
     <div className="flex flex-col">
+      <div className="relative z-50">
+        <NavBar />
+      </div>
 
       {/* ── HERO ── */}
       <div className="relative">
@@ -200,7 +204,7 @@ const Enlistment = () => {
             Why Do You Want to Join? <span className="text-IEEE-Orange">*</span>
           </label>
           <textarea
-            className="w-full border-2 border-gray-200 rounded-lg px-4 py-2.5 text-sm text-IEEE-Blue mb-4 outline-none focus:border-IEEE-Orange transition-colors resize-y min-h-[100px]"
+            className="w-full border-2 border-gray-200 rounded-lg px-4 py-2.5 text-sm text-IEEE-Blue mb-4 outline-none focus:border-IEEE-Orange transition-colors resize-y min-h-25"
             name="why" placeholder="Tell us about your goals and interests..."
             value={form.why} onChange={handleChange}
           />
@@ -231,7 +235,7 @@ const Enlistment = () => {
               key={i}
               className="flex items-start gap-4 bg-gray-50 border-2 border-gray-200 rounded-xl p-4 mb-3 transition-all duration-300 hover:border-IEEE-Orange hover:-translate-y-0.5"
             >
-              <div className="w-10 h-10 rounded-lg bg-IEEE-Orange text-white flex items-center justify-center flex-shrink-0">
+              <div className="w-10 h-10 rounded-lg bg-IEEE-Orange text-white flex items-center justify-center shrink-0">
                 {card.icon}
               </div>
               <div>
@@ -305,7 +309,7 @@ const Enlistment = () => {
               >
                 <span className="text-sm font-bold uppercase tracking-wide text-IEEE-Blue">{faq.q}</span>
                 <svg
-                  className={`w-5 h-5 text-IEEE-Orange flex-shrink-0 transition-transform duration-300 ${
+                  className={`w-5 h-5 text-IEEE-Orange shrink-0 transition-transform duration-300 ${
                     openFaq === i ? "rotate-180" : ""
                   }`}
                   viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"

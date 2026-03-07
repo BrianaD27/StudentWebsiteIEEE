@@ -1,37 +1,22 @@
-import React from "react";
-import { Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import NavBar from "./components/NavBar";
-import Footer from "./components/Footer";
-import HomePage from "./pages/HomePage";
-import BranchMissionPage from "./pages/BranchMissionPage";
-import UpcomingCampaigns from "./pages/UpcomingCampaigns";
-import CurrentActivities from "./pages/CurrentActivities";
+import QuarterDeck from "./pages/Quarterdeck"
+import Phalanx from "./pages/Phalanx";
+import Enlistment from "./pages/Enlistment";
+import CampaignTrail from "./pages/CampaignTrail";
 
-function App() {
+export default function App() {
   return (
-    <div className="flex flex-col min-h-screen">
-      <NavBar />
-      
-      {/* Main Content Area */}
-      <main className="flex-grow">
-        <Routes>
-          {/* The "Main" Page containing your stacked sections */}
-          <Route path="/" element={
-            <>
-              <HomePage />
-              <BranchMissionPage />
-              <UpcomingCampaigns />
-            </>
-          } />
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<QuarterDeck />} />
+        <Route path="/quarterdeck" element={<QuarterDeck />} />
+        <Route path="/phalanx" element={<Phalanx />} />
+        <Route path="/enlistment" element={<Enlistment/>}/>
+        <Route path="/leaders" element={<CampaignTrail/>}/>
 
-          {/* The "Separate" Page */}
-          <Route path="/activities" element={<CurrentActivities />} />
-        </Routes>
-      </main>
-
-      <Footer /> 
-    </div>
+      </Routes>
+    </BrowserRouter>
+    
   );
 }
-
-export default App;

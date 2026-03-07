@@ -122,7 +122,7 @@ export default function CampaignTrail() {
               <span className="absolute top-3 left-0 bg-green-500 text-white text-[9px] font-bold uppercase tracking-widest px-3 py-1 rounded-r-md z-10">
                 Registration Open
               </span>
-              <div className={`${c.imgBg} w-full md:w-52 min-h-[160px] flex-shrink-0`} />
+              <div className={`${c.imgBg} w-full md:w-52 min-h-40 shrink-0`} />
               <div className="flex flex-col flex-1 p-6">
                 <span className="text-[10px] font-bold uppercase tracking-widest border-2 border-gray-300 text-gray-500 rounded px-3 py-0.5 self-start mb-3">
                   {c.tag}
