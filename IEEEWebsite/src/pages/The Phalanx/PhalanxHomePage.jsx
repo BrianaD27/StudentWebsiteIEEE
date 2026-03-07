@@ -5,29 +5,27 @@ import blueBg from "../../assets/blueBg.png"
 const PhalanxHomePage = () => {
   return (
     <div className="h-auto flex flex-col">
-      <div className="relative z-50">
-        <NavBar />
-      </div>
 
       <div className="relative">
         <img
-          className="h-[70vh] sm:h-[70vh] w-full object-cover relative"
+          className="h-[50vh] sm:h-[50vh] w-full object-cover relative"
           src={blueBg}
           alt=""
         />
 
+
         <div className="absolute inset-0 flex flex-row text-center justify-center">
           <div className="flex flex-col justify-center items-center mx-6 md:mx-8">
-            <h1 className="text-md font-bold text-center mt-8 text-white px-4 py-2 bg-IEEE-Orange  rounded-full shadow-xl uppercase">
+            <h1 className="text-md font-bold text-center text-white px-4 py-2 bg-IEEE-Orange  rounded-full shadow-xl uppercase">
               The Phalanx
             </h1>
 
-            <h1 className="lg:text-8xl md:text-7xl text-5xl font-extrabold mt-6 text-white uppercase">
+            <h1 className="lg:text-6xl md:text-5xl text-4xl font-extrabold mt-6 text-white uppercase">
               About IEEE{" "}
               <span className="text-IEEE-Orange font-extrabold uppercase">vsu</span>
             </h1>
            
-            <p className="text-Blue-Grey mt-5 px-10 md:px-20 lg:text-3xl md:text-2xl text-xl font-bold">
+            <p className="text-Blue-Grey mt-5 px-10 md:px-20 text-lg font-bold">
               Where Trojan spirit meets technological excellence—building the future one innovation at a time.
             </p>
             

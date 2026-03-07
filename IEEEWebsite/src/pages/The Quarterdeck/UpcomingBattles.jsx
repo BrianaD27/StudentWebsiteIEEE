@@ -4,27 +4,28 @@ import hackathonPic from "../../assets/hackathonPic.jpeg"
 import pcbClass from "../../assets/pcbClass.jpg"
 import rightOrangeArrow from "../../assets/rightOrangeArrow.png"
 import summitPic from "../../assets/summitPic.jpeg"
+import { Link } from "react-router-dom";
 
 const cards = [
   {
     date: "March 15, 2026",
     title: "HACKATHON",
     description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui unde ad et corporis! Officia, sint eveniet delectus accusantium ullam vel temporibus! Cumque sed nesciunt placeat fuga. Repudiandae, officia! Est, voluptas!",
+      "Join us for a 12-hour coding challenge where teams compete to build innovative tech solutions. Open to all VSU students — no experience required. Prizes awarded for most creative, most technical, and best overall project.",
     img: hackathonPic,
   },
   {
     date: "March 22, 2026",
     title: "PCB Design Bootcamp",
     description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui unde ad et corporis! Officia, sint eveniet delectus accusantium ullam vel temporibus! Cumque sed nesciunt placeat fuga. Repudiandae, officia! Est, voluptas!",
+      "Learn the fundamentals of printed circuit board design using industry-standard Altium Designer software. Walk away with hands-on experience in schematic capture, PCB layout, and design rules — and order your very own custom PCB!",
     img: pcbClass,
   },
   {
     date: "April 5, 2026",
     title: "Tech Titans Summit",
     description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui unde ad et corporis! Officia, sint eveniet delectus accusantium ullam vel temporibus! Cumque sed nesciunt placeat fuga. Repudiandae, officia! Est, voluptas!",
+      "Connect with engineers and recruiters from top technology companies at our annual career fair. Bring your resume, sharpen your pitch, and explore internship and full-time opportunities. Professional attire strongly encouraged.",
     img: summitPic,
   },
 ];
@@ -52,8 +53,8 @@ const UpcomingBattles = () => {
             Upcoming Battles
           </h1>
         </div>
-        <a
-          href="/"
+        <Link
+          to="/trail"
           className="flex flex-row items-center gap-1 text-IEEE-Orange font-bold uppercase"
         >
           View All
@@ -62,7 +63,7 @@ const UpcomingBattles = () => {
             alt="Arrow Icon"
             className=" w-5 h-5"
           />
-        </a>
+        </Link>
       </div>
 
       {/* PC View */}

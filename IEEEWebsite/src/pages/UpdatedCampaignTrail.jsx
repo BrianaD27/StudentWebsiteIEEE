@@ -1,20 +1,50 @@
 import React from "react";
+import NavBar from "../components/NavBar";
+import Footer from "../components/footer";
+import pcb2 from "../assets/pcb2.jpg";
+import fair from "../assets/fair.jpg";
+import blueBg from "../assets/blueBg.png";
 
 /* ─── SVG Icon helpers ──────────────────────────── */
 const ClockIcon = () => (
-  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-    <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+  <svg
+    width="13"
+    height="13"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+  >
+    <circle cx="12" cy="12" r="10" />
+    <polyline points="12 6 12 12 16 14" />
   </svg>
 );
 const PinIcon = () => (
-  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-    <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>
+  <svg
+    width="13"
+    height="13"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+  >
+    <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z" />
+    <circle cx="12" cy="10" r="3" />
   </svg>
 );
 const UsersIcon = () => (
-  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/>
-    <path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+  <svg
+    width="13"
+    height="13"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+  >
+    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+    <circle cx="9" cy="7" r="4" />
+    <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+    <path d="M16 3.13a4 4 0 0 1 0 7.75" />
   </svg>
 );
 
@@ -28,7 +58,7 @@ const campaigns = [
     location: "Engineering Building",
     registered: "25 Registered",
     desc: "Comprehensive workshop on printed circuit board design using Altium Designer. Learn schematic capture, PCB layout, design rules, and manufacturing preparation. Design and order your own custom PCB!",
-    imgBg: "bg-[#c0a080]",
+    img: pcb2, // ← replace with your image filename
   },
   {
     tag: "Networking",
@@ -38,7 +68,7 @@ const campaigns = [
     location: "Student Center Ballroom",
     registered: "40 Registered",
     desc: "Career fair featuring local technology companies and startups. Resume workshops, mock interviews, keynote presentations, and networking opportunities.",
-    imgBg: "bg-[#445566]",
+    img: fair, // ← replace with your image filename
   },
 ];
 
@@ -82,19 +112,27 @@ const victories = [
 export default function CampaignTrail() {
   return (
     <div className="flex flex-col">
+      <div className="z-50 sticky top-0">
+        <NavBar />
+      </div>
 
       {/* ── HERO ── */}
       <div className="relative">
-        <div className="h-[45vh] w-full bg-IEEE-Blue border-b-4 border-IEEE-Orange" />
+        <img
+          className="h-[50vh] sm:h-[50vh] w-full object-cover relative"
+          src={blueBg}
+          alt=""
+        />
         <div className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center">
-          <h2 className="text-sm font-bold text-white px-4 py-2 bg-IEEE-Blue border border-white/20 rounded-full shadow-xl mb-4 uppercase tracking-widest">
+          <h2 className="text-sm font-bold text-white px-4 py-2 bg-IEEE-Orange border border-white/20 rounded-full shadow-xl mb-4 uppercase tracking-widest">
             The Campaign Trail
           </h2>
           <h1 className="lg:text-7xl md:text-6xl text-4xl font-extrabold text-white leading-tight uppercase">
             Trojan <span className="text-IEEE-Orange">Activities</span>
           </h1>
           <p className="text-Blue-Grey mt-4 lg:text-lg md:text-base text-sm font-semibold max-w-xl">
-            Join us for workshops, battles, networking events, and community service throughout the academic year.
+            Join us for workshops, battles, networking events, and community
+            service throughout the academic year.
           </p>
         </div>
         <div className="absolute sm:top-4 top-4 right-4 text-sm font-medium text-white bg-IEEE-Orange px-4 py-1 rounded-lg shadow-lg">
@@ -122,7 +160,14 @@ export default function CampaignTrail() {
               <span className="absolute top-3 left-0 bg-green-500 text-white text-[9px] font-bold uppercase tracking-widest px-3 py-1 rounded-r-md z-10">
                 Registration Open
               </span>
-              <div className={`${c.imgBg} w-full md:w-52 min-h-[160px] flex-shrink-0`} />
+
+              {/* ── Image — replace src in the data array above ── */}
+              <img
+                src={c.img}
+                alt={c.title}
+                className="w-full md:w-52 min-h-[160px] md:min-h-full object-cover flex-shrink-0"
+              />
+
               <div className="flex flex-col flex-1 p-6">
                 <span className="text-[10px] font-bold uppercase tracking-widest border-2 border-gray-300 text-gray-500 rounded px-3 py-0.5 self-start mb-3">
                   {c.tag}
@@ -132,19 +177,33 @@ export default function CampaignTrail() {
                 </h4>
                 <div className="flex flex-wrap gap-4 mb-3">
                   <span className="flex items-center gap-1.5 text-xs text-gray-500">
-                    <span className="text-IEEE-Orange"><ClockIcon /></span>{c.date}
+                    <span className="text-IEEE-Orange">
+                      <ClockIcon />
+                    </span>
+                    {c.date}
                   </span>
                   <span className="flex items-center gap-1.5 text-xs text-gray-500">
-                    <span className="text-IEEE-Orange"><ClockIcon /></span>{c.time}
+                    <span className="text-IEEE-Orange">
+                      <ClockIcon />
+                    </span>
+                    {c.time}
                   </span>
                   <span className="flex items-center gap-1.5 text-xs text-gray-500">
-                    <span className="text-IEEE-Orange"><PinIcon /></span>{c.location}
+                    <span className="text-IEEE-Orange">
+                      <PinIcon />
+                    </span>
+                    {c.location}
                   </span>
                   <span className="flex items-center gap-1.5 text-xs text-gray-500">
-                    <span className="text-IEEE-Orange"><UsersIcon /></span>{c.registered}
+                    <span className="text-IEEE-Orange">
+                      <UsersIcon />
+                    </span>
+                    {c.registered}
                   </span>
                 </div>
-                <p className="text-sm text-gray-500 leading-relaxed flex-1 mb-4">{c.desc}</p>
+                <p className="text-sm text-gray-500 leading-relaxed flex-1 mb-4">
+                  {c.desc}
+                </p>
                 <button className="self-start px-6 py-2.5 bg-IEEE-Orange text-white text-xs font-bold uppercase tracking-widest rounded-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:bg-[#e55f00]">
                   Register Now
                 </button>
@@ -157,7 +216,7 @@ export default function CampaignTrail() {
       {/* ── CURRENT ACTIVITIES ── */}
       <div className="bg-IEEE-Blue px-6 md:px-[10%] py-16">
         <div className="text-center mb-10">
-          <h2 className="text-sm font-bold text-white px-4 py-2 bg-IEEE-Blue border border-white/20 rounded-full shadow-xl inline-block mb-4 uppercase tracking-widest">
+          <h2 className="text-sm font-bold text-white px-4 py-2 bg-IEEE-Orange border border-white/20 rounded-full shadow-xl inline-block mb-4 uppercase tracking-widest">
             Ongoing Operations
           </h2>
           <h3 className="lg:text-5xl md:text-4xl text-3xl font-extrabold text-white uppercase">
@@ -175,10 +234,16 @@ export default function CampaignTrail() {
                 {a.title}
               </h4>
               <div className="flex items-start gap-2 text-xs text-[#a0bfdf] mb-1.5">
-                <span className="text-IEEE-Orange mt-0.5"><ClockIcon /></span>{a.schedule}
+                <span className="text-IEEE-Orange mt-0.5">
+                  <ClockIcon />
+                </span>
+                {a.schedule}
               </div>
               <div className="flex items-start gap-2 text-xs text-[#a0bfdf] mb-1.5">
-                <span className="text-IEEE-Orange mt-0.5"><PinIcon /></span>{a.location}
+                <span className="text-IEEE-Orange mt-0.5">
+                  <PinIcon />
+                </span>
+                {a.location}
               </div>
               <p className="text-xs text-[#c0d8ef] leading-relaxed mt-3 pt-3 border-t border-white/10">
                 {a.desc}
@@ -205,9 +270,15 @@ export default function CampaignTrail() {
               key={i}
               className="bg-white border-2 border-gray-200 rounded-xl p-6 transition-all duration-300 hover:border-IEEE-Orange hover:shadow-md"
             >
-              <p className="text-[10px] font-bold uppercase tracking-widest text-IEEE-Orange mb-2">{v.date}</p>
-              <h4 className="text-lg font-extrabold uppercase text-IEEE-Blue mb-2 leading-tight">{v.title}</h4>
-              <p className="text-sm text-gray-500 leading-relaxed mb-4">{v.desc}</p>
+              <p className="text-[10px] font-bold uppercase tracking-widest text-IEEE-Orange mb-2">
+                {v.date}
+              </p>
+              <h4 className="text-lg font-extrabold uppercase text-IEEE-Blue mb-2 leading-tight">
+                {v.title}
+              </h4>
+              <p className="text-sm text-gray-500 leading-relaxed mb-4">
+                {v.desc}
+              </p>
               <span className="inline-block bg-IEEE-Blue text-white text-[9px] font-bold uppercase tracking-widest px-3 py-1 rounded">
                 {v.outcome}
               </span>
@@ -217,12 +288,14 @@ export default function CampaignTrail() {
       </div>
 
       {/* ── CTA ── */}
+      <div className="w-full h-1 bg-IEEE-Orange"></div>
       <div className="bg-white px-6 md:px-[10%] py-16 text-center border-t-2 border-gray-100">
         <h3 className="lg:text-5xl md:text-4xl text-3xl font-extrabold text-IEEE-Blue uppercase mb-4">
           Never Miss a <span className="text-IEEE-Orange">Battle</span>
         </h3>
         <p className="text-sm text-gray-500 max-w-md mx-auto leading-relaxed mb-8">
-          Stay connected with the Trojan legion. Subscribe to our calendar and newsletter.
+          Stay connected with the Trojan legion. Subscribe to our calendar and
+          newsletter.
         </p>
         <div className="flex items-center justify-center gap-4 flex-wrap">
           <button className="px-8 py-4 bg-IEEE-Orange text-white font-bold uppercase tracking-wider rounded-xl shadow-lg text-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:bg-[#e55f00]">
@@ -234,6 +307,7 @@ export default function CampaignTrail() {
         </div>
       </div>
 
+      <Footer />
     </div>
   );
 }

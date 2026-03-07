@@ -1,3 +1,4 @@
+import Footer from "../../components/footer";
 export default function TrojanSpirit() {
   return (
     <section
@@ -5,7 +6,6 @@ export default function TrojanSpirit() {
       style={{ backgroundColor: "#e8521a" }}
     >
       <div className="max-w-4xl mx-auto">
-
         {/* Title */}
         <h2 className="text-4xl sm:text-5xl font-black uppercase tracking-tight mb-8">
           <span className="text-white">The Trojan </span>
@@ -24,10 +24,9 @@ export default function TrojanSpirit() {
           className="text-base sm:text-lg italic font-medium max-w-2xl mx-auto"
           style={{ color: "rgba(255,255,255,0.85)" }}
         >
-          We don't just study engineering. We live it, breathe it, and use it
-          to change the world.
+          We don't just study engineering. We live it, breathe it, and use it to
+          change the world.
         </p>
-
       </div>
     </section>
   );

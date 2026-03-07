@@ -6,10 +6,15 @@ import TheStrategyPage from "./The Quarterdeck/TheStrategyPage";
 import AdvantagePage from "./The Quarterdeck/AdvantagePage";
 import UpcomingBattles from "./The Quarterdeck/UpcomingBattles";
 import EnlistPage from "./The Quarterdeck/EnlistPage";
+import Footer from "../components/footer";
+import NavBar from "../components/NavBar";
 
 const Quarterdeck = () => {
   return (
     <div>
+      <div className="z-50 sticky top-0">
+        <NavBar />
+      </div>
       <HomePage />
       <BranchMissionPage />
       <StatsPage />
@@ -17,6 +22,7 @@ const Quarterdeck = () => {
       <AdvantagePage />
       <UpcomingBattles />
       <EnlistPage />
+      <Footer />
     </div>
   );
 };
