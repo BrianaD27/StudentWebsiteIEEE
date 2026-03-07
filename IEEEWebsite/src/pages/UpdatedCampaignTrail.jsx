@@ -3,6 +3,7 @@ import NavBar from "../components/NavBar";
 import Footer from "../components/footer";
 import pcb2 from "../assets/pcb2.jpg";
 import fair from "../assets/fair.jpg";
+import blueBg from "../assets/blueBg.png";
 
 /* ─── SVG Icon helpers ──────────────────────────── */
 const ClockIcon = () => (
@@ -117,7 +118,11 @@ export default function CampaignTrail() {
 
       {/* ── HERO ── */}
       <div className="relative">
-        <div className="h-[45vh] w-full bg-IEEE-Blue border-b-4 border-IEEE-Orange" />
+        <img
+          className="h-[30vh] sm:h-[50vh] w-full object-cover relative"
+          src={blueBg}
+          alt=""
+        />
         <div className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center">
           <h2 className="text-sm font-bold text-white px-4 py-2 bg-IEEE-Orange border border-white/20 rounded-full shadow-xl mb-4 uppercase tracking-widest">
             The Campaign Trail

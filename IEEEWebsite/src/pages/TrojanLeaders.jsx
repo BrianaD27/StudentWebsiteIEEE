@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import NavBar from "../components/NavBar";
 import Footer from "../components/footer";
+import blueBg from "../assets/blueBg.png";
 
 /* ─── Data ─────────────────────────────────────── */
 const officers = [
@@ -13,7 +14,7 @@ const officers = [
     year: "Senior",
     bio: "Leading the Trojan chapter with vision for technical and professional systems.",
     email: "me@vsu.edu",
-    phone: "(804)",
+    phone: "",
   },
   {
     initials: "AW",
@@ -21,7 +22,7 @@ const officers = [
     role: "Vice President / Vice Chair",
     major: "Computer Science",
     year: "Any Year",
-    bio: "",
+    bio: "Driving the mission forward and ensuring every initiative runs with Trojan precision.",
     email: "kw@vsu.edu",
     phone: "",
   },
@@ -36,15 +37,15 @@ const officers = [
     phone: "",
   },
   {
-    initials: "JP",
-    name: "IDK",
-    role: "Treasurer",
-    major: "Electrical Engineering",
+    initials: "DC",
+    name: "Eleni Nekonnen",
+    role: "Secretary",
+    major: "Computer Science",
     year: "Junior",
-    bio: "Keeps financial control to support technical resources. Treasurer with precision.",
-    email: "jp@vsu.edu",
+    bio: "Maintains official records, ensuring our operations stay sharp and documented.",
+    email: "ene@vsu.edu",
     phone: "",
-  },
+  }
 ];
 
 const committees = [
@@ -150,7 +151,11 @@ const TrojanLeaders = () => {
 
       {/* ── HERO ── */}
       <div className="relative">
-        <div className="h-[40vh] w-full bg-IEEE-Blue border-b-4 border-IEEE-Orange" />
+        <img
+          className="h-[30vh] sm:h-[50vh] w-full object-cover relative"
+          src={blueBg}
+          alt=""
+        />
         <div className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center">
           <h2 className="text-sm font-bold text-white px-4 py-2 bg-IEEE-Orange rounded-full shadow-xl mb-4 uppercase tracking-widest">
             Trojan Leaders

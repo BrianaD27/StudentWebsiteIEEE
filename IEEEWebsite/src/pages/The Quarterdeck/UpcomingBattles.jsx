@@ -11,21 +11,21 @@ const cards = [
     date: "March 15, 2026",
     title: "HACKATHON",
     description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui unde ad et corporis! Officia, sint eveniet delectus accusantium ullam vel temporibus! Cumque sed nesciunt placeat fuga. Repudiandae, officia! Est, voluptas!",
+      "Join us for a 12-hour coding challenge where teams compete to build innovative tech solutions. Open to all VSU students — no experience required. Prizes awarded for most creative, most technical, and best overall project.",
     img: hackathonPic,
   },
   {
     date: "March 22, 2026",
     title: "PCB Design Bootcamp",
     description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui unde ad et corporis! Officia, sint eveniet delectus accusantium ullam vel temporibus! Cumque sed nesciunt placeat fuga. Repudiandae, officia! Est, voluptas!",
+      "Learn the fundamentals of printed circuit board design using industry-standard Altium Designer software. Walk away with hands-on experience in schematic capture, PCB layout, and design rules — and order your very own custom PCB!",
     img: pcbClass,
   },
   {
     date: "April 5, 2026",
     title: "Tech Titans Summit",
     description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui unde ad et corporis! Officia, sint eveniet delectus accusantium ullam vel temporibus! Cumque sed nesciunt placeat fuga. Repudiandae, officia! Est, voluptas!",
+      "Connect with engineers and recruiters from top technology companies at our annual career fair. Bring your resume, sharpen your pitch, and explore internship and full-time opportunities. Professional attire strongly encouraged.",
     img: summitPic,
   },
 ];

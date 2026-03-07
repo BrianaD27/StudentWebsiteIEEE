@@ -79,10 +79,10 @@ function MailIcon() {
 export default function Footer() {
   return (
     <div>
-      <div className="w-screen h-1" style={{ backgroundColor: "#e85d20" }} />
+      <div className="w-screen h-1 bg-IEEE-Orange" />
       <footer
-        style={{ backgroundColor: "#1a2e5a" }}
-        className="w-full pt-12 pb-6 px-6 sm:px-10"
+        
+        className="w-full pt-12 pb-6 px-6 sm:px-10 bg-IEEE-Blue"
       >
         {/* Main 3-column grid */}
         <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 mb-10">
@@ -190,8 +190,8 @@ export default function Footer() {
       <div className="w-full h-0.5 px-0 bg-blue-700"></div>
 
       <footer
-        style={{ backgroundColor: "#1a2e5a" }}
-        className="w-full pt-12 pb-6 sm:px-10"
+        
+        className="w-full pt-12 pb-6 sm:px-10 bg-IEEE-Blue"
       >
         {/* Bottom copyright block */}
         <div className="text-center space-y-1.5">

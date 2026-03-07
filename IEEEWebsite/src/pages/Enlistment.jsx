@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import NavBar from "../components/NavBar";
 import Footer from "../components/footer";
+import blueBg from "../assets/blueBg.png"
 
 const Enlistment = () => {
   const [openFaq, setOpenFaq] = useState(null);
@@ -196,7 +197,11 @@ const Enlistment = () => {
 
       {/* ── HERO ── */}
       <div className="relative">
-        <div className="h-[50vh] w-full bg-IEEE-Blue" />
+         <img
+                  className="h-[30vh] sm:h-[50vh] w-full object-cover relative"
+                  src={blueBg}
+                  alt=""
+                />
 
         <div className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center">
           <h1 className="text-sm font-bold text-white px-4 py-2 bg-IEEE-Orange rounded-full shadow-xl mb-4">
