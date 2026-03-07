@@ -78,7 +78,7 @@ function MailIcon() {
 
 export default function Footer() {
   return (
-    <div>
+        <div>
       <div className="w-screen h-1 bg-IEEE-Orange" />
       <footer
         
@@ -136,11 +136,11 @@ export default function Footer() {
                   </Link>
                 </li>
               ))}
-            </ul>
-          </div>
+          </ul>
+        </div>
 
           {/* ── Col 3: Command Center ── */}
-          <div>
+        <div>
             <h3
               className="font-black text-base uppercase tracking-wide mb-5"
               style={{ color: "#e85d20" }}
@@ -215,7 +215,7 @@ export default function Footer() {
             Designed for IEEE Region 3 Standards • Minimum 640×480 Compatible
           </p>
         </div>
-      </footer>
+    </footer>
     </div>
   );
 }
