@@ -1,5 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import NavBar from "../components/NavBar";
+import Footer from "../components/footer";
 
 /* ─── Data ─────────────────────────────────────── */
 const officers = [
@@ -74,30 +76,67 @@ const committees = [
 
 /* ─── Icon helpers ──────────────────────────────── */
 const MailIcon = () => (
-  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-    <rect x="2" y="4" width="20" height="16" rx="2"/>
-    <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+  <svg
+    width="13"
+    height="13"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+  >
+    <rect x="2" y="4" width="20" height="16" rx="2" />
+    <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
   </svg>
 );
 const LinkedInIcon = () => (
-  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/>
-    <rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/>
+  <svg
+    width="13"
+    height="13"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+  >
+    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z" />
+    <rect x="2" y="9" width="4" height="12" />
+    <circle cx="4" cy="4" r="2" />
   </svg>
 );
 const GithubIcon = () => (
-  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+  <svg
+    width="13"
+    height="13"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+  >
+    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
   </svg>
 );
 const PhoneIcon = () => (
-  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.4 2 2 0 0 1 3.6 1.22h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.9a16 16 0 0 0 6 6l.95-.95a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.73 16l.19.92z"/>
+  <svg
+    width="13"
+    height="13"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+  >
+    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.4 2 2 0 0 1 3.6 1.22h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.9a16 16 0 0 0 6 6l.95-.95a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.73 16l.19.92z" />
   </svg>
 );
 const PinIcon = () => (
-  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-    <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>
+  <svg
+    width="13"
+    height="13"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+  >
+    <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z" />
+    <circle cx="12" cy="10" r="3" />
   </svg>
 );
 
@@ -105,6 +144,9 @@ const PinIcon = () => (
 const TrojanLeaders = () => {
   return (
     <div className="flex flex-col">
+      <div className="z-50 sticky top-0">
+        <NavBar />
+      </div>
 
       {/* ── HERO ── */}
       <div className="relative">
@@ -117,7 +159,8 @@ const TrojanLeaders = () => {
             The <span className="text-IEEE-Orange">Command</span> Center
           </h1>
           <p className="text-Blue-Grey mt-4 lg:text-lg md:text-base text-sm font-semibold max-w-xl">
-            Meet the dedicated Trojans leading our chapter to excellence and innovation.
+            Meet the dedicated Trojans leading our chapter to excellence and
+            innovation.
           </p>
         </div>
         <div className="absolute sm:top-4 top-4 right-4 text-sm font-medium text-white bg-IEEE-Orange px-4 py-1 rounded-lg shadow-lg">
@@ -160,26 +203,40 @@ const TrojanLeaders = () => {
                 <p className="text-xs text-gray-400 italic mb-3">{o.year}</p>
 
                 {o.bio && (
-                  <p className="text-xs text-gray-500 leading-relaxed mb-3 flex-1">{o.bio}</p>
+                  <p className="text-xs text-gray-500 leading-relaxed mb-3 flex-1">
+                    {o.bio}
+                  </p>
                 )}
 
                 <div className="flex flex-col gap-1 mb-3">
                   {o.email && (
                     <span className="flex items-center gap-1.5 text-xs text-gray-500">
-                      <span className="text-IEEE-Orange"><MailIcon /></span>{o.email}
+                      <span className="text-IEEE-Orange">
+                        <MailIcon />
+                      </span>
+                      {o.email}
                     </span>
                   )}
                   {o.phone && (
                     <span className="flex items-center gap-1.5 text-xs text-gray-500">
-                      <span className="text-IEEE-Orange"><PhoneIcon /></span>{o.phone}
+                      <span className="text-IEEE-Orange">
+                        <PhoneIcon />
+                      </span>
+                      {o.phone}
                     </span>
                   )}
                 </div>
 
                 <div className="flex items-center gap-3 pt-3 border-t border-gray-100">
-                  <span className="text-gray-400 hover:text-IEEE-Orange cursor-pointer transition-colors"><MailIcon /></span>
-                  <span className="text-gray-400 hover:text-IEEE-Orange cursor-pointer transition-colors"><LinkedInIcon /></span>
-                  <span className="text-gray-400 hover:text-IEEE-Orange cursor-pointer transition-colors"><GithubIcon /></span>
+                  <span className="text-gray-400 hover:text-IEEE-Orange cursor-pointer transition-colors">
+                    <MailIcon />
+                  </span>
+                  <span className="text-gray-400 hover:text-IEEE-Orange cursor-pointer transition-colors">
+                    <LinkedInIcon />
+                  </span>
+                  <span className="text-gray-400 hover:text-IEEE-Orange cursor-pointer transition-colors">
+                    <GithubIcon />
+                  </span>
                 </div>
               </div>
             </div>
@@ -214,15 +271,21 @@ const TrojanLeaders = () => {
             </p>
             <div className="flex flex-col gap-2 items-center">
               <span className="flex items-center gap-2 text-sm text-[#a0bfdf]">
-                <span className="text-IEEE-Orange"><MailIcon /></span>
+                <span className="text-IEEE-Orange">
+                  <MailIcon />
+                </span>
                 CWashington@vsu.edu
               </span>
               <span className="flex items-center gap-2 text-sm text-[#a0bfdf]">
-                <span className="text-IEEE-Orange"><PhoneIcon /></span>
+                <span className="text-IEEE-Orange">
+                  <PhoneIcon />
+                </span>
                 804-524-1924
               </span>
               <span className="flex items-center gap-2 text-sm text-[#a0bfdf]">
-                <span className="text-IEEE-Orange"><PinIcon /></span>
+                <span className="text-IEEE-Orange">
+                  <PinIcon />
+                </span>
                 Engineering Building, Room 201
               </span>
             </div>
@@ -250,7 +313,9 @@ const TrojanLeaders = () => {
               <h4 className="text-sm font-extrabold uppercase text-IEEE-Blue mb-2 tracking-wide">
                 {c.name}
               </h4>
-              <p className="text-xs text-gray-500 leading-relaxed mb-4">{c.desc}</p>
+              <p className="text-xs text-gray-500 leading-relaxed mb-4">
+                {c.desc}
+              </p>
 
               <p className="text-[10px] font-bold uppercase tracking-widest text-IEEE-Orange mb-1">
                 Committee Chair:
@@ -263,8 +328,12 @@ const TrojanLeaders = () => {
               </p>
               <div className="grid grid-cols-2 gap-x-4 gap-y-1">
                 {c.members.map((m, j) => (
-                  <span key={j} className="flex items-center gap-1.5 text-xs text-gray-500">
-                    <span className="text-IEEE-Orange">▸</span>{m}
+                  <span
+                    key={j}
+                    className="flex items-center gap-1.5 text-xs text-gray-500"
+                  >
+                    <span className="text-IEEE-Orange">▸</span>
+                    {m}
                   </span>
                 ))}
               </div>
@@ -296,11 +365,14 @@ const TrojanLeaders = () => {
             <span>Aaron Wilcots</span>
           </div>
           <span className="flex items-center justify-center gap-2 text-sm text-IEEE-Blue font-semibold mb-4">
-            <span className="text-IEEE-Orange"><MailIcon /></span>
+            <span className="text-IEEE-Orange">
+              <MailIcon />
+            </span>
             webmaster@vsu-ieee.org
           </span>
           <p className="text-xs text-gray-400 italic">
-            For website updates, technical issues, or digital communications inquiries.
+            For website updates, technical issues, or digital communications
+            inquiries.
           </p>
         </div>
       </div>
@@ -313,7 +385,9 @@ const TrojanLeaders = () => {
           <span className="text-white"> Army</span>
         </h3>
         <p className="text-white/90 lg:text-lg md:text-base text-sm font-semibold max-w-xl mx-auto mb-8 leading-relaxed">
-          Interested in a leadership position? We're always seeking motivated Trojans to join our officer corps and committee teams. Elections are held annually each spring semester.
+          Interested in a leadership position? We're always seeking motivated
+          Trojans to join our officer corps and committee teams. Elections are
+          held annually each spring semester.
         </p>
         <Link to="/enlistment">
           <button className="px-10 py-4 bg-IEEE-Blue text-white font-extrabold uppercase tracking-widest rounded-xl shadow-xl text-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:bg-[#001e3c]">
@@ -322,6 +396,7 @@ const TrojanLeaders = () => {
         </Link>
       </div>
 
+      <Footer />
     </div>
   );
 };

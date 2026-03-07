@@ -1,14 +1,12 @@
 import React from "react";
 import NavBar from "../../components/NavBar";
 import homepage from "../../assets/homepage.png"
+import { Link } from "react-router-dom";
 
 
 const HomePage = () => {
   return (
     <div className="h-[80vh]flex flex-col">
-      <div className="relative z-50">
-        <NavBar />
-      </div>
 
       <div className="relative">
         <img
@@ -36,6 +34,7 @@ const HomePage = () => {
             </p>
 
             <div className="flex flex-row items-center gap-4 mt-2">
+              <Link to="/enlistment">
               <button className="mt-6 md:px-6 px-3 py-4 bg-IEEE-Orange text-white font-semibold rounded-xl shadow-lg lg:text-lg md:text-md text-sm transition-all duration-300 hover:-translate-y-1 ">
                 JOIN THE TROJAN ARMY
                 <img
@@ -44,13 +43,14 @@ const HomePage = () => {
                   className="md:h-8 h-5 ml-2 inline-block"
                 />
               </button>
+              </Link>
 
               {/* CHANGE: Wrapped this button in an <a> tag pointing to #CurrentActivities */}
-              <a href="#CurrentActivities">
+              <Link to="/trail">
                 <button className="mt-6 md:px-6 px-3 py-4 bg-none border-2 text-white font-semibold rounded-xl shadow-lg lg:text-lg md:text-md text-sm transition-all duration-300 hover:-translate-y-1">
                   VIEW CAMPAIGN TRAIL
                 </button>
-              </a>
+              </Link>
             </div>
           </div>
 

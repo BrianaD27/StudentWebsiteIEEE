@@ -4,6 +4,7 @@ import hackathonPic from "../../assets/hackathonPic.jpeg"
 import pcbClass from "../../assets/pcbClass.jpg"
 import rightOrangeArrow from "../../assets/rightOrangeArrow.png"
 import summitPic from "../../assets/summitPic.jpeg"
+import { Link } from "react-router-dom";
 
 const cards = [
   {
@@ -52,8 +53,8 @@ const UpcomingBattles = () => {
             Upcoming Battles
           </h1>
         </div>
-        <a
-          href="/"
+        <Link
+          to="/trail"
           className="flex flex-row items-center gap-1 text-IEEE-Orange font-bold uppercase"
         >
           View All
@@ -62,7 +63,7 @@ const UpcomingBattles = () => {
             alt="Arrow Icon"
             className=" w-5 h-5"
           />
-        </a>
+        </Link>
       </div>
 
       {/* PC View */}

@@ -5,9 +5,6 @@ import blueBg from "../../assets/blueBg.png"
 const PhalanxHomePage = () => {
   return (
     <div className="h-auto flex flex-col">
-      <div className="relative z-50">
-        <NavBar />
-      </div>
 
       <div className="relative">
         <img
