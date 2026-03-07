@@ -7,6 +7,7 @@ import CampaignTrail from "./pages/UpdatedCampaignTrail"
 import TrojanLeaders from "./pages/TrojanLeaders"
 import ScrollToTop from "./components/ScrollToTop";
 
+
 export default function App() {
   return (
     <BrowserRouter>
