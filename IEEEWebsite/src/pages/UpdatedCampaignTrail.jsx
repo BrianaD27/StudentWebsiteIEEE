@@ -119,7 +119,7 @@ export default function CampaignTrail() {
       {/* ── HERO ── */}
       <div className="relative">
         <img
-          className="h-[30vh] sm:h-[50vh] w-full object-cover relative"
+          className="h-[50vh] sm:h-[50vh] w-full object-cover relative"
           src={blueBg}
           alt=""
         />

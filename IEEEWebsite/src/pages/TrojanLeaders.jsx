@@ -152,18 +152,18 @@ const TrojanLeaders = () => {
       {/* ── HERO ── */}
       <div className="relative">
         <img
-          className="h-[30vh] sm:h-[50vh] w-full object-cover relative"
+          className="h-[50vh] sm:h-[50vh] w-full object-cover relative"
           src={blueBg}
           alt=""
         />
-        <div className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center">
+        <div className="absolute inset-0 flex flex-col items-center justify-center px-10 text-center">
           <h2 className="text-sm font-bold text-white px-4 py-2 bg-IEEE-Orange rounded-full shadow-xl mb-4 uppercase tracking-widest">
             Trojan Leaders
           </h2>
           <h1 className="lg:text-6xl md:text-5xl text-4xl font-extrabold text-white leading-tight uppercase">
             The <span className="text-IEEE-Orange">Command</span> Center
           </h1>
-          <p className="text-Blue-Grey mt-4 lg:text-lg md:text-base text-sm font-semibold max-w-xl">
+          <p className="text-Blue-Grey mt-4 lg:text-lg md:text-base text-sm font-semibold px-5">
             Meet the dedicated Trojans leading our chapter to excellence and
             innovation.
           </p>

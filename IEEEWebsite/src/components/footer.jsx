@@ -90,10 +90,10 @@ export default function Footer() {
           <div>
             <div className="flex items-center gap-3 mb-4">
               <div
-                className="w-12 h-12 rounded-xl flex items-center justify-center text-white font-black text-lg flex-shrink-0"
+                className="md:w-12 md:h-12 w-10 h-10 rounded-xl flex items-center justify-center text-white font-black text-lg shrink-0"
                 
               >
-                <img src={vsuLogo} className="w-fit h-fit border rounded-lg" alt="" />
+                <img src={vsuLogo} className="w-auto h-auto border rounded-lg" alt="" />
                 
               </div>
               <div>
