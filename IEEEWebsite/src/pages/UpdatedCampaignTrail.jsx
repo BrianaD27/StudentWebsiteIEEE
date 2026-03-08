@@ -136,7 +136,7 @@ export default function CampaignTrail() {
           </p>
         </div>
         <div className="absolute sm:top-4 top-4 right-4 text-sm font-medium text-white bg-IEEE-Orange px-4 py-1 rounded-lg shadow-lg">
-          <p>Last Updated: February 22, 2026 at 11:30 AM</p>
+          <p>Last Updated: February 25, 2026 at 10:48 AM</p>
         </div>
       </div>
 
@@ -204,9 +204,15 @@ export default function CampaignTrail() {
                 <p className="text-sm text-gray-500 leading-relaxed flex-1 mb-4">
                   {c.desc}
                 </p>
-                <button className="self-start px-6 py-2.5 bg-IEEE-Orange text-white text-xs font-bold uppercase tracking-widest rounded-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:bg-[#e55f00]">
-                  Register Now
-                </button>
+                <a
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href="https://forms.gle/hT32xKTwgZJBEdk46"
+                >
+                  <button className="self-start px-6 py-2.5 bg-IEEE-Orange text-white text-xs font-bold uppercase tracking-widest rounded-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:bg-[#e55f00]">
+                    Register Now
+                  </button>
+                </a>
               </div>
             </div>
           ))}
@@ -294,16 +300,18 @@ export default function CampaignTrail() {
           Never Miss a <span className="text-IEEE-Orange">Battle</span>
         </h3>
         <p className="text-sm text-gray-500 max-w-md mx-auto leading-relaxed mb-8">
-          Stay connected with the Trojan legion. Subscribe to our calendar and
-          newsletter.
+          Stay connected with the Trojan legion. Join our GroupMe Today!
         </p>
         <div className="flex items-center justify-center gap-4 flex-wrap">
-          <button className="px-8 py-4 bg-IEEE-Orange text-white font-bold uppercase tracking-wider rounded-xl shadow-lg text-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:bg-[#e55f00]">
-            Add to Calendar
-          </button>
-          <button className="px-8 py-4 bg-transparent text-IEEE-Blue font-bold uppercase tracking-wider rounded-xl border-2 border-IEEE-Blue text-sm transition-all duration-300 hover:bg-IEEE-Blue hover:text-white">
-            Subscribe to Updates
-          </button>
+          <a
+            target="_blank"
+            rel="noopener noreferrer"
+            href="https://groupme.com/join_group/104414728/vjYwYrkj"
+          >
+            <button className="px-8 py-4 bg-IEEE-Orange text-white font-bold uppercase tracking-wider rounded-xl shadow-lg text-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:bg-[#e55f00]">
+              Join The GroupMe
+            </button>
+          </a>
         </div>
       </div>
 

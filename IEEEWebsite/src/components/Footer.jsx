@@ -121,7 +121,7 @@ export default function Footer() {
             </h3>
             <ul className="space-y-3">
               {[
-                { label: "The Quarterdeck (Home)", to: "/" },
+                { label: "The Quarterdeck (Home)", to: "/quarterdeck" },
                 { label: "The Phalanx (About)", to: "/phalanx" },
                 { label: "Campaign Trail (Events)", to: "/trail" },
                 { label: "Trojan Leaders (Team)", to: "/leaders" },
@@ -212,7 +212,7 @@ export default function Footer() {
             </span>
           </p>
           <p className="text-blue-400 text-xs italic mt-1">
-            Designed for IEEE Region 3 Standards • Minimum 640×480 Compatible
+            Designed for IEEE Region 3 Standards
           </p>
         </div>
     </footer>

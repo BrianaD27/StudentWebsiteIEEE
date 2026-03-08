@@ -1,10 +1,23 @@
 import React, { useState } from "react";
 import NavBar from "../components/NavBar";
 import Footer from "../components/footer";
-import blueBg from "../assets/blueBg.png"
+import blueBg from "../assets/blueBg.png";
+
+const GOOGLE_FORM_URL =
+  "https://docs.google.com/forms/d/e/1FAIpQLSdU_fw39R6x5LyZszifDVwBJZT1AVJzJR-X1nCifz9I1MaULQ/formResponse";
+
+const FIELD_IDS = {
+  name: "entry.1389702531",
+  email: "entry.1315519908",
+  major: "entry.796280391",
+  year: "entry.839313841",
+  interest: "entry.105646483",
+  why: "entry.2134716914",
+};
 
 const Enlistment = () => {
   const [openFaq, setOpenFaq] = useState(null);
+  const [submitted, setSubmitted] = useState(false);
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -16,6 +29,47 @@ const Enlistment = () => {
 
   const handleChange = (e) =>
     setForm((f) => ({ ...f, [e.target.name]: e.target.value }));
+
+  const handleSubmit = async () => {
+    if (
+      !form.name ||
+      !form.email ||
+      !form.major ||
+      !form.year ||
+      !form.interest ||
+      !form.why
+    ) {
+      alert("Please fill out all required fields.");
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append(FIELD_IDS.name, form.name);
+    formData.append(FIELD_IDS.email, form.email);
+    formData.append(FIELD_IDS.major, form.major);
+    formData.append(FIELD_IDS.year, form.year);
+    formData.append(FIELD_IDS.interest, form.interest);
+    formData.append(FIELD_IDS.why, form.why);
+
+    try {
+      await fetch(GOOGLE_FORM_URL, {
+        method: "POST",
+        body: formData,
+        mode: "no-cors",
+      });
+      setSubmitted(true);
+      setForm({
+        name: "",
+        email: "",
+        major: "",
+        year: "",
+        interest: "",
+        why: "",
+      });
+    } catch {
+      alert("Something went wrong. Please try again.");
+    }
+  };
 
   const faqs = [
     {
@@ -137,56 +191,6 @@ const Enlistment = () => {
       name: "Instagram",
       handle: "@ieee.vsu",
     },
-    {
-      icon: (
-        <svg
-          width="32"
-          height="32"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="1.8"
-        >
-          <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z" />
-          <rect x="2" y="9" width="4" height="12" />
-          <circle cx="4" cy="4" r="2" />
-        </svg>
-      ),
-      name: "LinkedIn",
-      handle: "IEEE VSU Branch",
-    },
-    {
-      icon: (
-        <svg
-          width="32"
-          height="32"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="1.8"
-        >
-          <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
-        </svg>
-      ),
-      name: "Facebook",
-      handle: "@ieeevsu",
-    },
-    {
-      icon: (
-        <svg
-          width="32"
-          height="32"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="1.8"
-        >
-          <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z" />
-        </svg>
-      ),
-      name: "Twitter",
-      handle: "@ieee.vsu",
-    },
   ];
 
   return (
@@ -197,12 +201,11 @@ const Enlistment = () => {
 
       {/* ── HERO ── */}
       <div className="relative">
-         <img
-                  className="h-[50vh] sm:h-[50vh] w-full object-cover relative"
-                  src={blueBg}
-                  alt=""
-                />
-
+        <img
+          className="h-[50vh] sm:h-[50vh] w-full object-cover relative"
+          src={blueBg}
+          alt=""
+        />
         <div className="w-full absolute inset-0 flex flex-col items-center justify-center px-10 text-center">
           <h1 className="text-sm font-bold text-white px-4 py-2 bg-IEEE-Orange rounded-full shadow-xl mb-4">
             ENLISTMENT
@@ -215,9 +218,8 @@ const Enlistment = () => {
             greater happen together!
           </p>
         </div>
-
         <div className="absolute sm:top-4 top-4 right-4 text-md font-medium text-white bg-IEEE-Orange px-4 py-1 rounded-lg shadow-lg">
-          <p>Last Updated: February 25, 2026 at 10:30 AM</p>
+          <p>Last Updated: February 25, 2026 at 10:48 AM</p>
         </div>
       </div>
 
@@ -232,88 +234,124 @@ const Enlistment = () => {
             Enlist Today
           </h3>
 
-          <label className="block text-xs font-bold uppercase tracking-wider text-IEEE-Blue mb-1">
-            Full Name <span className="text-IEEE-Orange">*</span>
-          </label>
-          <input
-            className="w-full border-2 border-gray-200 rounded-lg px-4 py-2.5 text-sm text-IEEE-Blue mb-4 outline-none focus:border-IEEE-Orange transition-colors"
-            name="name"
-            placeholder="Your full name"
-            value={form.name}
-            onChange={handleChange}
-          />
-
-          <label className="block text-xs font-bold uppercase tracking-wider text-IEEE-Blue mb-1">
-            VSU Email Address <span className="text-IEEE-Orange">*</span>
-          </label>
-          <input
-            className="w-full border-2 border-gray-200 rounded-lg px-4 py-2.5 text-sm text-IEEE-Blue mb-4 outline-none focus:border-IEEE-Orange transition-colors"
-            name="email"
-            placeholder="yourname@vsu.edu"
-            value={form.email}
-            onChange={handleChange}
-          />
-
-          <div className="grid grid-cols-2 gap-4">
-            <div>
+          {submitted ? (
+            <div className="flex flex-col items-center justify-center text-center py-16 gap-4">
+              <div className="w-16 h-16 rounded-full bg-IEEE-Orange flex items-center justify-center">
+                <svg
+                  width="32"
+                  height="32"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="white"
+                  strokeWidth="2.5"
+                >
+                  <polyline points="20 6 9 17 4 12" />
+                </svg>
+              </div>
+              <h4 className="text-2xl font-extrabold text-IEEE-Blue uppercase">
+                Welcome to the Legion!
+              </h4>
+              <p className="text-sm text-gray-500 max-w-xs leading-relaxed">
+                Your enlistment has been received. We'll be in touch at your VSU
+                email shortly. Hooah! 🎉
+              </p>
+              <button
+                onClick={() => setSubmitted(false)}
+                className="mt-2 text-xs font-bold uppercase tracking-wider text-IEEE-Orange border-2 border-IEEE-Orange px-4 py-2 rounded-lg hover:bg-IEEE-Orange hover:text-white transition-colors"
+              >
+                Submit Another Response
+              </button>
+            </div>
+          ) : (
+            <>
               <label className="block text-xs font-bold uppercase tracking-wider text-IEEE-Blue mb-1">
-                Major <span className="text-IEEE-Orange">*</span>
+                Full Name <span className="text-IEEE-Orange">*</span>
               </label>
               <input
                 className="w-full border-2 border-gray-200 rounded-lg px-4 py-2.5 text-sm text-IEEE-Blue mb-4 outline-none focus:border-IEEE-Orange transition-colors"
-                name="major"
-                value={form.major}
+                name="name"
+                placeholder="Your full name"
+                value={form.name}
                 onChange={handleChange}
               />
-            </div>
-            <div>
+
               <label className="block text-xs font-bold uppercase tracking-wider text-IEEE-Blue mb-1">
-                Class Year <span className="text-IEEE-Orange">*</span>
+                VSU Email Address <span className="text-IEEE-Orange">*</span>
               </label>
               <input
                 className="w-full border-2 border-gray-200 rounded-lg px-4 py-2.5 text-sm text-IEEE-Blue mb-4 outline-none focus:border-IEEE-Orange transition-colors"
-                name="year"
-                value={form.year}
+                name="email"
+                placeholder="yourname@vsu.edu"
+                value={form.email}
                 onChange={handleChange}
               />
-            </div>
-          </div>
 
-          <label className="block text-xs font-bold uppercase tracking-wider text-IEEE-Blue mb-1">
-            Interest Area <span className="text-IEEE-Orange">*</span>
-          </label>
-          <input
-            className="w-full border-2 border-gray-200 rounded-lg px-4 py-2.5 text-sm text-IEEE-Blue mb-4 outline-none focus:border-IEEE-Orange transition-colors"
-            name="interest"
-            value={form.interest}
-            onChange={handleChange}
-          />
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-xs font-bold uppercase tracking-wider text-IEEE-Blue mb-1">
+                    Major <span className="text-IEEE-Orange">*</span>
+                  </label>
+                  <input
+                    className="w-full border-2 border-gray-200 rounded-lg px-4 py-2.5 text-sm text-IEEE-Blue mb-4 outline-none focus:border-IEEE-Orange transition-colors"
+                    name="major"
+                    value={form.major}
+                    onChange={handleChange}
+                  />
+                </div>
+                <div>
+                  <label className="block text-xs font-bold uppercase tracking-wider text-IEEE-Blue mb-1">
+                    Class Year <span className="text-IEEE-Orange">*</span>
+                  </label>
+                  <input
+                    className="w-full border-2 border-gray-200 rounded-lg px-4 py-2.5 text-sm text-IEEE-Blue mb-4 outline-none focus:border-IEEE-Orange transition-colors"
+                    name="year"
+                    value={form.year}
+                    onChange={handleChange}
+                  />
+                </div>
+              </div>
 
-          <label className="block text-xs font-bold uppercase tracking-wider text-IEEE-Blue mb-1">
-            Why Do You Want to Join? <span className="text-IEEE-Orange">*</span>
-          </label>
-          <textarea
-            className="w-full border-2 border-gray-200 rounded-lg px-4 py-2.5 text-sm text-IEEE-Blue mb-4 outline-none focus:border-IEEE-Orange transition-colors resize-y min-h-25"
-            name="why"
-            placeholder="Tell us about your goals and interests..."
-            value={form.why}
-            onChange={handleChange}
-          />
+              <label className="block text-xs font-bold uppercase tracking-wider text-IEEE-Blue mb-1">
+                Interest Area <span className="text-IEEE-Orange">*</span>
+              </label>
+              <input
+                className="w-full border-2 border-gray-200 rounded-lg px-4 py-2.5 text-sm text-IEEE-Blue mb-4 outline-none focus:border-IEEE-Orange transition-colors"
+                name="interest"
+                value={form.interest}
+                onChange={handleChange}
+              />
 
-          <button className="w-full mt-2 py-4 bg-IEEE-Orange text-white font-bold uppercase tracking-wider rounded-xl shadow-lg text-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl flex items-center justify-center gap-2">
-            <svg
-              width="14"
-              height="14"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2.5"
-            >
-              <line x1="22" y1="2" x2="11" y2="13" />
-              <polygon points="22 2 15 22 11 13 2 9 22 2" />
-            </svg>
-            Submit Enlistment Form
-          </button>
+              <label className="block text-xs font-bold uppercase tracking-wider text-IEEE-Blue mb-1">
+                Why Do You Want to Join?{" "}
+                <span className="text-IEEE-Orange">*</span>
+              </label>
+              <textarea
+                className="w-full border-2 border-gray-200 rounded-lg px-4 py-2.5 text-sm text-IEEE-Blue mb-4 outline-none focus:border-IEEE-Orange transition-colors resize-y min-h-25"
+                name="why"
+                placeholder="Tell us about your goals and interests..."
+                value={form.why}
+                onChange={handleChange}
+              />
+
+              <button
+                onClick={handleSubmit}
+                className="w-full mt-2 py-4 bg-IEEE-Orange text-white font-bold uppercase tracking-wider rounded-xl shadow-lg text-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl flex items-center justify-center gap-2"
+              >
+                <svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2.5"
+                >
+                  <line x1="22" y1="2" x2="11" y2="13" />
+                  <polygon points="22 2 15 22 11 13 2 9 22 2" />
+                </svg>
+                Submit Enlistment Form
+              </button>
+            </>
+          )}
         </div>
 
         {/* Right — Contact */}
@@ -366,20 +404,26 @@ const Enlistment = () => {
           channels
         </p>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto mb-8">
-          {socialLinks.map((s, i) => (
-            <div
-              key={i}
-              className="border-2 border-IEEE-Orange rounded-xl py-6 px-4 flex flex-col items-center gap-3 cursor-pointer text-IEEE-Orange transition-all duration-300 hover:bg-IEEE-Orange hover:text-white hover:-translate-y-1"
-            >
-              {s.icon}
-              <p className="text-xs font-extrabold uppercase tracking-widest text-white">
-                {s.name}
-              </p>
-              <p className="text-xs text-Blue-Grey">{s.handle}</p>
-            </div>
-          ))}
-        </div>
+        <a
+          target="_blank"
+          rel="noopener noreferrer"
+          href="https://www.instagram.com/ieee_vsu/"
+        >
+          <div className="flex items-center justify-center max-w-3xl mx-auto mb-8">
+            {socialLinks.map((s, i) => (
+              <div
+                key={i}
+                className="border-2 border-IEEE-Orange rounded-xl py-6 px-6 flex flex-col items-center gap-3 cursor-pointer text-IEEE-Orange transition-all duration-300 hover:bg-IEEE-Orange hover:text-white hover:-translate-y-1"
+              >
+                {s.icon}
+                <p className="text-xs font-extrabold uppercase tracking-widest text-white">
+                  {s.name}
+                </p>
+                <p className="text-xs text-Blue-Grey">{s.handle}</p>
+              </div>
+            ))}
+          </div>
+        </a>
 
         <div className="max-w-3xl mx-auto border-2 border-IEEE-Orange rounded-xl p-5 text-left bg-white/5">
           <p className="text-sm font-bold text-white mb-2">

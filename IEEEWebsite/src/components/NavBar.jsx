@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
-import languageIcon from "../assets/languageIcon.png";
 import vsuLogo from "../../public/vsuLogo.jpeg";
 
 const NavBar = () => {
@@ -42,10 +41,7 @@ const NavBar = () => {
 
           {/* Mobile buttons */}
           <div className="flex flex-row items-center gap-4">
-            <button className="flex flex-row items-center gap-2 border-2 border-gray-400 rounded-md p-2 px-4 md:hidden">
-              <img className="w-4 h-4" src={languageIcon} alt="" />
-              EN
-            </button>
+
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               className="flex flex-col items-center justify-center space-y-1.5 hover:cursor-pointer md:hidden pr-4"
@@ -82,10 +78,6 @@ const NavBar = () => {
                 {link.label}
               </NavLink>
             ))}
-            <button className="flex flex-row items-center gap-2 border-2 border-gray-400 rounded-md p-2 px-4 ml-1">
-              <img className="lg:w-5 lg:h-5 w-3 h-3" src={languageIcon} alt="" />
-              EN
-            </button>
           </ul>
 
         </div>

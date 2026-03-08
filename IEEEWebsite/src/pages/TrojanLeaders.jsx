@@ -7,43 +7,43 @@ import blueBg from "../assets/blueBg.png";
 /* ─── Data ─────────────────────────────────────── */
 const officers = [
   {
-    initials: "MJ",
-    name: "Melody E",
+    initials: "M",
+    name: "Melody Enwerem",
     role: "President / Branch Chair",
     major: "Computer Engineering",
     year: "Senior",
     bio: "Leading the Trojan chapter with vision for technical and professional systems.",
-    email: "me@vsu.edu",
+    email: "menw9176@students.vsu.edu",
     phone: "",
   },
   {
-    initials: "AW",
-    name: "Kwabena",
+    initials: "KA",
+    name: "Kwabena Amoako",
     role: "Vice President / Vice Chair",
     major: "Computer Science",
-    year: "Any Year",
+    year: "Senior",
     bio: "Driving the mission forward and ensuring every initiative runs with Trojan precision.",
-    email: "kw@vsu.edu",
+    email: "kamo9723@students.vsu.edu",
     phone: "",
   },
   {
-    initials: "DC",
-    name: "Eleni Nekonnen",
+    initials: "EM",
+    name: "Eleni Mekonnen",
     role: "Secretary",
     major: "Computer Science",
     year: "Junior",
     bio: "Maintains official records, ensuring our operations stay sharp and documented.",
-    email: "ene@vsu.edu",
+    email: "emek7557@students.vsu.edu",
     phone: "",
   },
   {
-    initials: "DC",
-    name: "Eleni Nekonnen",
-    role: "Secretary",
-    major: "Computer Science",
+    initials: "CR",
+    name: "Chrinesha Rogers",
+    role: "Treasurer",
+    major: "Electrical Engineering",
     year: "Junior",
-    bio: "Maintains official records, ensuring our operations stay sharp and documented.",
-    email: "ene@vsu.edu",
+    bio: "Manages the chapter's finances and budget, keeping our operations funded and mission-ready.",
+    email: "crog3030@students.vsu.edu",
     phone: "",
   }
 ];
@@ -52,7 +52,7 @@ const committees = [
   {
     name: "Technical Committee",
     desc: "Organizes technical workshops, hackathons, and hands-on training sessions.",
-    chair: "__@vsu.edu",
+    chair: "",
     members: ["Sarah Martinez", "Noah Brown", "Holly Davis", "Jordan Lee"],
   },
   {
@@ -232,17 +232,7 @@ const TrojanLeaders = () => {
                   )}
                 </div>
 
-                <div className="flex items-center gap-3 pt-3 border-t border-gray-100">
-                  <span className="text-gray-400 hover:text-IEEE-Orange cursor-pointer transition-colors">
-                    <MailIcon />
-                  </span>
-                  <span className="text-gray-400 hover:text-IEEE-Orange cursor-pointer transition-colors">
-                    <LinkedInIcon />
-                  </span>
-                  <span className="text-gray-400 hover:text-IEEE-Orange cursor-pointer transition-colors">
-                    <GithubIcon />
-                  </span>
-                </div>
+                
               </div>
             </div>
           ))}
@@ -263,7 +253,7 @@ const TrojanLeaders = () => {
         <div className="max-w-md mx-auto">
           <div className="bg-[#001e3c] border-2 border-IEEE-Orange rounded-xl p-8 text-center">
             <div className="w-16 h-16 rounded-full bg-IEEE-Orange flex items-center justify-center text-white font-extrabold text-xl mx-auto mb-4 shadow-lg">
-              RA
+              CW
             </div>
             <h4 className="text-lg font-extrabold uppercase text-white mb-1">
               Christopher Washington, Ph.D.
@@ -279,7 +269,7 @@ const TrojanLeaders = () => {
                 <span className="text-IEEE-Orange">
                   <MailIcon />
                 </span>
-                CWashington@vsu.edu
+                cwashington@vsu.edu
               </span>
               <span className="flex items-center gap-2 text-sm text-[#a0bfdf]">
                 <span className="text-IEEE-Orange">
@@ -321,12 +311,6 @@ const TrojanLeaders = () => {
               <p className="text-xs text-gray-500 leading-relaxed mb-4">
                 {c.desc}
               </p>
-
-              <p className="text-[10px] font-bold uppercase tracking-widest text-IEEE-Orange mb-1">
-                Committee Chair:
-              </p>
-              <div className="w-8 h-0.5 bg-IEEE-Orange mb-1" />
-              <p className="text-xs text-gray-500 mb-4">{c.chair}</p>
 
               <p className="text-[10px] font-bold uppercase tracking-widest text-IEEE-Blue mb-2">
                 Committee Members:
