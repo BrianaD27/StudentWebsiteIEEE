@@ -7,7 +7,7 @@ import blueBg from "../assets/blueBg.png";
 /* ─── Data ─────────────────────────────────────── */
 const officers = [
   {
-    initials: "M",
+    initials: "ME",
     name: "Melody Enwerem",
     role: "President / Branch Chair",
     major: "Computer Engineering",
